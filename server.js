@@ -3,7 +3,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 
 const { getId } = require('./utils');
-const { users } = require('./data');
+let { users } = require('./data');
 
 const app = express();
 
@@ -34,7 +34,7 @@ app.put('/user', (req, res) => {
 
 app.delete('/user', (req, res) => {
   const { id } = req.query;
-  users.splice(users.findIndex(item => item.id === id), 1);
+  users = users.filter(item => item.id !== id);
   res.sendStatus(200);
 });
 
